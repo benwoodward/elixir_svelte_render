@@ -70,7 +70,7 @@ defmodule ReactRender do
       {:error, %{message: message, stack: stack}} ->
         raise ReactRender.RenderError, message: message, stack: stack
 
-      {:ok, %{"markup" => markup, "component" => component}} ->
+      {:ok, %{"markup" => markup}} ->
         props =
           props
           |> Jason.encode!()
@@ -78,9 +78,7 @@ defmodule ReactRender do
 
         html =
           """
-          <div data-rendered data-component="#{component}" data-props="#{props}">
           #{markup}
-          </div>
           """
           |> String.replace("\n", "")
 

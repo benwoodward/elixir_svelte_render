@@ -1,6 +1,4 @@
-const ReactServer = require('react-dom/server')
-const React = require('react')
-const readline = require('readline')
+require('svelte/register');
 
 function deleteCache(componentPath) {
   if (
@@ -16,21 +14,18 @@ function requireComponent(componentPath) {
   // so that we can see changes
   deleteCache(componentPath)
 
-  return require(componentPath)
+  return require(componentPath).default
 }
 
 function render(componentPath, props) {
   try {
     const component = requireComponent(componentPath)
-    const element = component.default ? component.default : component
-    const createdElement = React.createElement(element, props)
 
-    const markup = ReactServer.renderToString(createdElement)
+    const { html, css, head } = component.render(props);
 
     const response = {
       error: null,
-      markup: markup,
-      component: element.name,
+      markup: html
     }
 
     return response
