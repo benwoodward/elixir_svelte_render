@@ -1,10 +1,10 @@
-defmodule ReactRender.MixProject do
+defmodule SvelteRender.MixProject do
   use Mix.Project
 
   def project do
     [
-      app: :react_render,
-      version: "3.0.0",
+      app: :svelte_render,
+      version: "0.1.0",
       elixir: "~> 1.7",
       start_permanent: Mix.env() == :prod,
       deps: deps(),
@@ -19,11 +19,11 @@ defmodule ReactRender.MixProject do
       ],
 
       # Docs
-      name: "ReactRender",
-      source_url: "https://github.com/revelrylabs/elixir_react_render",
-      homepage_url: "https://github.com/revelrylabs/elixir_react_render",
+      name: "SvelteRender",
+      source_url: "https://github.com/benwoodward/elixir_svelte_render",
+      homepage_url: "https://github.com/benwoodward/elixir_svelte_render",
       # The main page in the docs
-      docs: [main: "ReactRender", extras: ["README.md"]]
+      docs: [main: "SvelteRender", extras: ["README.md"]]
     ]
   end
 
@@ -46,7 +46,7 @@ defmodule ReactRender.MixProject do
 
   defp description do
     """
-    Renders React components as HTML
+    Renders Svelte components as HTML
     """
   end
 
@@ -62,10 +62,10 @@ defmodule ReactRender.MixProject do
         "priv/client.js",
         "package.json"
       ],
-      maintainers: ["Bryan Joseph", "Luke Ledet"],
+      maintainers: ["Ben Woodward"],
       licenses: ["MIT"],
       links: %{
-        "GitHub" => "https://github.com/revelrylabs/elixir_react_render"
+        "GitHub" => "https://github.com/benwoodward/elixir_svelte_render"
       },
       build_tools: ["mix"]
     ]

@@ -1,18 +1,18 @@
-defmodule ReactRender do
+defmodule SvelteRender do
   use Supervisor
 
   @timeout 10_000
   @default_pool_size 4
 
   @moduledoc """
-  React Renderer
+  Svelte Renderer
   """
 
   @doc """
-  Starts the ReactRender and workers.
+  Starts the SvelteRender and workers.
 
   ## Options
-    * `:render_service_path` - (required) is the path to the react render service relative
+    * `:render_service_path` - (required) is the path to the svelte render service relative
   to your current working directory
     * `:pool_size` - (optional) the number of workers. Defaults to 4
   """
@@ -25,7 +25,7 @@ defmodule ReactRender do
   end
 
   @doc """
-  Stops the ReactRender and underlying node react render service
+  Stops the SvelteRender and underlying node svelte render service
   """
   @spec stop() :: :ok
   def stop() do
@@ -35,7 +35,7 @@ defmodule ReactRender do
   @doc """
   Given the `component_path` and `props`, returns html.
 
-  `component_path` is the path to your react component module relative
+  `component_path` is the path to your svelte component module relative
   to the render service.
 
   `props` is a map of props given to the component. Must be able to turn into
@@ -54,11 +54,11 @@ defmodule ReactRender do
 
   @doc """
   Same as `get_html/2` but wraps html in a div which is used
-  to hydrate react component on client side.
+  to hydrate svelte component on client side.
 
   This is the preferred function when using with Phoenix
 
-  `component_path` is the path to your react component module relative
+  `component_path` is the path to your svelte component module relative
   to the render service.
 
   `props` is a map of props given to the component. Must be able to turn into
@@ -68,7 +68,7 @@ defmodule ReactRender do
   def render(component_path, props \\ %{}) do
     case do_get_html(component_path, props) do
       {:error, %{message: message, stack: stack}} ->
-        raise ReactRender.RenderError, message: message, stack: stack
+        raise SvelteRender.RenderError, message: message, stack: stack
 
       {:ok, %{"markup" => markup}} ->
         props =

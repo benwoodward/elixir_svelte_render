@@ -1,33 +1,31 @@
-# ReactRender
+# SvelteRender
 
-[![Build Status](https://travis-ci.org/revelrylabs/elixir_react_render.svg?branch=master)](https://travis-ci.org/revelrylabs/elixir_react_render)
-[![Hex.pm](https://img.shields.io/hexpm/dt/react_render.svg)](https://hex.pm/packages/react_render)
+[![Hex.pm](https://img.shields.io/hexpm/dt/svelte_render.svg)](https://hex.pm/packages/svelte_render)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Coverage Status](https://opencov.prod.revelry.net/projects/11/badge.svg)](https://opencov.prod.revelry.net/projects/11)
 
-Renders React as HTML
+Renders Svelte as HTML
 
 ## Documentation
 
 The docs can
-be found at [https://hexdocs.pm/react_render](https://hexdocs.pm/react_render).
+be found at [https://hexdocs.pm/svelte_render](https://hexdocs.pm/svelte_render).
 
 ## Installation
 
 ```elixir
 def deps do
   [
-    {:react_render, "~> 3.0.0"}
+    {:svelte_render, "~> 3.0.0"}
   ]
 end
 ```
 
 ## Getting Started with Phoenix
 
-- Add `react_render` to your dependencies in package.json
+- Add `svelte_render` to your dependencies in package.json
 
   ```js
-  "react_render": "file:../deps/react_render"
+  "svelte_render": "file:../deps/svelte_render"
   ```
 
 - Run `npm install`
@@ -42,24 +40,24 @@ end
   require('@babel/polyfill')
   require('@babel/register')({cwd: __dirname})
 
-  module.exports = require('react_render/priv/server')
+  module.exports = require('svelte_render/priv/server')
   ```
 
   Note: You must move any `@babel` used for server-side rendering from `devDependencies` to `dependencies` in your `package.json` file. This is required when installing dependencies required for production as these packages.
 
-- Add `ReactRender` to your Supervisor as a child. We're using the absolute path to ensure we are specifying the correct working directory that contains the `render_server.js` file we created earlier.
+- Add `SvelteRender` to your Supervisor as a child. We're using the absolute path to ensure we are specifying the correct working directory that contains the `render_server.js` file we created earlier.
 
   ```elixir
     render_service_path = "#{File.cwd!}/assets"
     pool_size = 4
 
-    supervisor(ReactRender, [[render_service_path: render_service_path, pool_size: 4]])
+    supervisor(SvelteRender, [[render_service_path: render_service_path, pool_size: 4]])
   ```
 
-- Create a react component like:
+- Create a svelte component like:
 
   ```js
-  import React, {Component, createElement} from 'react'
+  import Svelte, {Component, createElement} from 'svelte'
 
   class HelloWorld extends Component {
     render() {
@@ -72,14 +70,14 @@ end
   export default HelloWorld
   ```
 
-- Call `ReactRender.render/2` inside the action of your controller
+- Call `SvelteRender.render/2` inside the action of your controller
 
   ```elixir
   def index(conn, _params) do
     component_path = "#{File.cwd!}/assets/js/HelloWorld.js"
     props = %{name: "Revelry"}
 
-    { :safe, helloWorld } = ReactRender.render(component_path, props)
+    { :safe, helloWorld } = SvelteRender.render(component_path, props)
 
     render(conn, "index.html", helloWorldComponent: helloWorld)
   end
@@ -96,11 +94,11 @@ end
 - To hydrate server-created components in the client, add the following to your `app.js`
 
   ```js
-  import {hydrateClient} from 'react_render/priv/client'
+  import {hydrateClient} from 'svelte_render/priv/client'
   import HelloWorld from './HelloWorld.js'
 
   function getComponentFromStringName(stringName) {
-    // Map string component names to your react components here
+    // Map string component names to your svelte components here
     if (stringName === 'HelloWorld') {
       return HelloWorld
     }

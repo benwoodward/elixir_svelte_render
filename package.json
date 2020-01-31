@@ -1,7 +1,7 @@
 {
-  "name": "react_render",
+  "name": "svelte_render",
   "version": "3.0.0",
-  "author": "Bryan Joseph <bryan@revelry.co> (https://revelry.co)",
+  "author": "Ben Woodward <ben@terminalcoder.dev> (https://terminalcoder.dev)",
   "license": "MIT",
   "files": [
     "README.md",
