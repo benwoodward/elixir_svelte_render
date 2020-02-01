@@ -3,7 +3,8 @@
 [![Hex.pm](https://img.shields.io/hexpm/dt/svelte_render.svg)](https://hex.pm/packages/svelte_render)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-WARNING: This is beta. Don't use in production unless you know what you're doing!
+- WARNING: This is beta. Don't use in production unless you know what you're doing!
+- Pull Requests are most welcome. This package needs tests, and probably some bug fixes.
 
 Renders Svelte components as HTML
 
