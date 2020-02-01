@@ -209,3 +209,15 @@ The postcss configs allow you to import a global.scss file into your App.svelte 
   ```
 
 You should now be able to run `mix phx.server` and your Svelte components with update with live reloading
+
+## Development
+
+For debugging you can use `priv/cli.js`:
+
+```js
+node priv/cli --component "/Full/path/to/Component.svelte" --props "{name: 'Svelte'}"
+// output:
+//   { error: null,
+//      markup: '<p>Hello from Svelte</p>',
+//      component: '/Users/you/Dev/project_folder/assets/src/Component.svelte' }
+```

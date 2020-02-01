@@ -1,4 +1,4 @@
-defmodule ReactRender.RenderError do
+defmodule SvelteRender.RenderError do
   @moduledoc """
   Error when unable to render given component
   """

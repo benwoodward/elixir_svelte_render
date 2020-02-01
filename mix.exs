@@ -40,7 +40,7 @@ defmodule SvelteRender.MixProject do
       {:jason, "~> 1.0"},
       {:ex_doc, "~> 0.21.2", only: :dev},
       {:excoveralls, "~> 0.12.0", only: :test},
-      {:nodejs, path: "~/dev/GitHub/elixir-nodejs"}
+      {:nodejs, "~> 1.1"}
     ]
   end
 
