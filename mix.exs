@@ -59,7 +59,6 @@ defmodule SvelteRender.MixProject do
         "LICENSE",
         "CHANGELOG.md",
         "priv/server.js",
-        "priv/client.js",
         "package.json"
       ],
       maintainers: ["Ben Woodward"],
