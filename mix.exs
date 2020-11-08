@@ -58,6 +58,7 @@ defmodule SvelteRender.MixProject do
         "README.md",
         "LICENSE",
         "CHANGELOG.md",
+        "priv/cli.js",
         "priv/server.js",
         "package.json"
       ],
