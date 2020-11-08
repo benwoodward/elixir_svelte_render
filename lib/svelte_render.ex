@@ -41,9 +41,9 @@ defmodule SvelteRender do
   `props` is a map of props given to the component. Must be able to turn into
   json
   """
-  @spec get_html(binary(), map()) :: {:ok, binary()} | {:error, map()}
-  def get_html(component_path, props \\ %{}) do
-    case do_get_html(component_path, props) do
+  @spec get_html(binary(), binary(), binary(), map()) :: {:ok, binary()} | {:error, map()}
+  def get_html(app_component_path, component_path, component_name, props \\ %{}) do
+    case do_get_html(app_component_path, component_path, component_name, props) do
       {:error, _} = error ->
         error
 
@@ -64,9 +64,9 @@ defmodule SvelteRender do
   `props` is a map of props given to the component. Must be able to turn into
   json
   """
-  @spec render(binary(), map()) :: {:safe, binary()}
-  def render(component_path, props \\ %{}) do
-    case do_get_html(component_path, props) do
+  @spec render(binary(), binary(), binary(), map()) :: {:safe, binary()}
+  def render(app_component_path, component_path, component_name, props \\ %{}) do
+    case do_get_html(app_component_path, component_path, component_name, props) do
       {:error, %{message: message, stack: stack}} ->
         raise SvelteRender.RenderError, message: message, stack: stack
 
@@ -86,16 +86,16 @@ defmodule SvelteRender do
     end
   end
 
-  defp do_get_html(component_path, props) do
+  defp do_get_html(app_component_path, component_path, component_name, props) do
     task =
       Task.async(fn ->
-        NodeJS.call({:render_server, :render}, [component_path, props], binary: true)
+        NodeJS.call({:render_server, :render}, [app_component_path, component_path, component_name, props], binary: true)
       end)
 
     case Task.await(task, @timeout) do
       {:ok, %{"error" => error}} when not is_nil(error) ->
         normalized_error = %{
-          message: error["message"],
+          message: error["message"] <> error["stack"],
           stack: error["stack"]
         }
 
