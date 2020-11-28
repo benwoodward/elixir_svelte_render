@@ -1,3 +1,7 @@
+# ARCHIVED
+This code works, however, due to the way rendered HTML is passed from `node` CLI back to Elixir (through `stdout`), it is very difficult to debug errors. This could probably be fixed but not without a lot of work which I don't have bandwidth for right now. Another big issue is that it doesn't work with es module builds, i.e. if you specify `format: 'esm'` in your rollup config. This package is tightly coupled with https://github.com/revelrylabs/elixir-nodejs, to get this working with es modules would require a lot of work on both packages. 
+
+
 # SvelteRender
 
 [![Hex.pm](https://img.shields.io/hexpm/dt/svelte_render.svg)](https://hex.pm/packages/svelte_render)
